@@ -1,4 +1,4 @@
-# spring-graphql-mutations-poc
+# Spring Graphql Mutations POC
 
 Demonstrates three Spring for GraphQL mutation features:
 1. **`@MutationMapping`** — Handler methods for GraphQL mutations

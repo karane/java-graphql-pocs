@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GraphiQL</title>
+    <style>
+        body { height: 100%; margin: 0; width: 100%; overflow: hidden; }
+        #graphiql { height: 100vh; }
+    </style>
+    <script src="/graphiql/react.production.min.js" crossorigin></script>
+    <script src="/graphiql/react-dom.production.min.js" crossorigin></script>
+    <script src="/graphiql/graphiql.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/graphiql/graphiql.min.css" />
+    <script src="/graphiql/explorer.umd.js" crossorigin></script>
+    <link rel="stylesheet" href="/graphiql/explorer.style.css" />
+</head>
+<body>
+<div id="graphiql">Loading...</div>
+<script>
+    const url = '/graphql';
+    const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const subscriptionUrl = `${wsProtocol}//${location.host}/graphql`;
+    const gqlFetcher = GraphiQL.createFetcher({ url, subscriptionUrl });
+    const explorerPlugin = GraphiQLPluginExplorer.explorerPlugin();
+    ReactDOM.render(
+        React.createElement(GraphiQL, {
+            fetcher: gqlFetcher,
+            defaultVariableEditorOpen: true,
+            headerEditorEnabled: true,
+            shouldPersistHeaders: true,
+            plugins: [explorerPlugin]
+        }),
+        document.getElementById('graphiql'),
+    );
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 type Query {
-    # Nullable return — null propagation stops here if a non-null field inside Book is null
+    # Nullable return -- null propagation stops here if a non-null field inside Book is null
     book(id: ID!): Book
-    # Non-null list with non-null items — a null book propagates to nullify the entire list
+    # Non-null list with non-null items -- a null book propagates to nullify the entire list
     books: [Book!]!
     # titlePrefix is nullable in SDL but enforced as @NotNull in Java (@Argument binding)
     searchBooks(titlePrefix: String): [Book!]!
@@ -10,26 +10,26 @@ type Query {
 type Book {
     id: ID!
     title: String!
-    author: Author!   # non-null — null here propagates to Book
+    author: Author!   # non-null -- null here propagates to Book
     pages: Int
-    review: Review!   # non-null — null here propagates to Book
+    review: Review!   # non-null -- null here propagates to Book
 }
 
 type Author {
     id: ID!
     name: String!
-    bio: String       # nullable — safe to return null
-    publisher: Publisher  # nullable — null propagation stops here
+    bio: String       # nullable -- safe to return null
+    publisher: Publisher  # nullable -- null propagation stops here
 }
 
 type Publisher {
     id: ID!
-    name: String!     # non-null — null here propagates to Publisher (which is nullable in Author)
+    name: String!     # non-null -- null here propagates to Publisher (which is nullable in Author)
     country: String!
 }
 
 type Review {
     id: ID!
     rating: Int!
-    comment: String!  # non-null — null here propagates: comment → Review → Book → query field
+    comment: String!  # non-null -- null here propagates: comment --> Review --> Book --> query field
 }

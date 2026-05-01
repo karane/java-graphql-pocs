@@ -1,0 +1,27 @@
+type Query {
+    books(filter: BookFilter): [Book!]!
+    me: String!
+    environment: EnvironmentInfo!
+}
+
+input BookFilter {
+    titleContains: String
+    authorId: ID
+}
+
+type Book {
+    id: ID!
+    title: String!
+    author: Author!
+}
+
+type Author {
+    id: ID!
+    name: String!
+}
+
+type EnvironmentInfo {
+    field: String!
+    locale: String!
+    selectedFields: [String!]!
+}

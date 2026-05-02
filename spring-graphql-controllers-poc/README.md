@@ -1,4 +1,4 @@
-# spring-graphql-controllers-poc
+# Sprint GraphQL Controllers - POC
 
 Demonstrates three advanced Spring for GraphQL controller features:
 1. **Input DTO binding** — `@Argument` on complex input types (`BookFilter`)
